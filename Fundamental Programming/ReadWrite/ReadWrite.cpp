@@ -18,19 +18,34 @@ struct Persoana
 {
 	int nrCrt;
 	char nume[50];
-	char *prenume;
+	char prenume[50];
 };
 
 int main()
 {
 	int n,nrCrt = 0;
-	//printf_s("Intoduceti numarul de Persoane: "); scanf_s("%d", &n);
-	struct Persoana newPers;
-	printf_s("nrCrt: %d\n", ++nrCrt);
-	printf_s("Nume:"); gets_s(newPers.nume);
-	newPers.prenume = (char*)malloc(50 * sizeof(char));
-	printf_s("Prenume:"); scanf("%49s", newPers.prenume);
-	printf_s("%s %s", newPers.nume, newPers.prenume);
+	printf("Intoduceti numarul de Persoane: "); scanf_s("%d", &n);
+	struct Persoana *pers = (Persoana*)malloc(n * sizeof(Persoana));
+	for (int i = 0; i < n; i++)
+	{
+		printf("nrCrt: %d\n", ++nrCrt);
+		pers[i].nrCrt = nrCrt;
+		printf("Nume:"); scanf("%49s", pers[i].nume);
+		printf_s("Prenume:"); scanf("%49s", pers[i].prenume);
+	}
+
+	printf("---------------------------------------------------------------\n");
+	printf("|Nr. | NUMELE SI PRENUMELE                     |Varsta|Salariu|\n");
+	printf("|crt.|                                         |      |       |\n");
+	printf("|----+-----------------------------------------+------+-------|\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("|%4d|%-41s|%6d|%7d|\n", pers[i].nrCrt, strcat(strcat(pers[i].nume,"_"), pers[i].prenume), 321, 321);
+	}
+	printf("|----+-----------------------------------------+------+-------|\n");
+	printf("|Medie                                         |      |       |\n");
+	printf("---------------------------------------------------------------\n");
+
 	getchar();
 	getchar();
 	return 0;
