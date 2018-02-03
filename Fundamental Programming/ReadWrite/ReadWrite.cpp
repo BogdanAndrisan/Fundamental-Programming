@@ -9,25 +9,27 @@
 //|---------------------------------------------- + ------ + ------ - |
 //| Medie		 | 22.25 | 750.63 |
 //-------------------------------------------------------------- -
-#include <stdio.h>
+#pragma warning(disable:4996)
+#include <cstdio>
 #include <stdlib.h>
 #include <string.h>
 
 struct Persoana
 {
 	int nrCrt;
-	char nume[100];
-	char prenume[100];
+	char nume[50];
+	char *prenume;
 };
 
 int main()
 {
 	int n,nrCrt = 0;
-	printf_s("Intoduceti numarul de Persoane: "); scanf_s("%d", &n);
+	//printf_s("Intoduceti numarul de Persoane: "); scanf_s("%d", &n);
 	struct Persoana newPers;
-	printf_s("nrCrt: %d", ++nrCrt);
+	printf_s("nrCrt: %d\n", ++nrCrt);
 	printf_s("Nume:"); gets_s(newPers.nume);
-	printf_s("Prenume:"); scanf_s(" %s", newPers.prenume);
+	newPers.prenume = (char*)malloc(50 * sizeof(char));
+	printf_s("Prenume:"); scanf("%49s", newPers.prenume);
 	printf_s("%s %s", newPers.nume, newPers.prenume);
 	getchar();
 	getchar();
